@@ -1,4 +1,4 @@
-# Save your Energy data locally  
+# Save your Homewizzard Energy data locally  
 
 I wanted to save my data locally as a backup, this script parses the data from the weekly graph and stores the daily
 data behind it in a local SQLite DB.  
