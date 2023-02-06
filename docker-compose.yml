@@ -1,0 +1,28 @@
+version: '3'
+
+services:
+  collector:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    env_file:
+      - .env
+    volumes:
+      - energy-db:/app/data
+  grafana:
+    image: grafana/grafana:latest
+    ports:
+      - "3000:3000"
+    volumes:
+      - grafana-data:/var/lib/grafana
+      - energy-db:/data
+      - ./grafana/provisioning/:/etc/grafana/provisioning/
+      - ./grafana/dashboards:/var/lib/grafana/dashboards
+    user: 1000:1000
+    env_file:
+      - .env
+    restart: unless-stopped
+
+volumes:
+  grafana-data:
+  energy-db:
